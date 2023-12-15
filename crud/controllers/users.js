@@ -1,7 +1,17 @@
 import { v4 as uuidv4 } from "uuid"; /// importa la funcion v4 y la renombra a uuidv4. Es para generar ids
 
-let users = []; /// Define un array vacio para almacenar los usuarios
-
+let users = [
+	{
+		firstName: "John",
+		lastName: "Doe",
+		age: 25,
+	},
+	{
+		firstName: "Nun",
+		lastName: "Ve",
+		age: 35,
+	},
+]; /// crea un array vacio
 /// exporta la funcion createUser que recive dos argumentos, req(la solicitud) y res(la respuesta). Crea el user
 export const createUser = (req, res) => {
 	const user = req.body; ///extrae el cuerpo de la solicitud y lo almacena en una constante llamada user.
@@ -36,5 +46,5 @@ export const updateUser = (req, res) => {
 	if (lastName) user.lastName = lastName; /// si se ingresa lastName en la solicitud se reasigna el valor
 	if (age) user.age = age; /// si se ingresa age en la solicitud se reasigna el valor
 
-	res.send(`User with the id ${id} has been updated`);/// ernvia una respuesta diciendo que el usuario se actualizo
+	res.send(`User with the id ${id} has been updated`); /// envia una respuesta diciendo que el usuario se actualizo
 };
