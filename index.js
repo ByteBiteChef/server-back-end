@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use("/users", usersRoutes);
 /// Define la ruta Get para la ruta ("/"), cuando se accede a la ruta hace el console.log
 app.get("/", (req, res) => {
-	res.send("hello from homepage");
+	res.sendFile("./index.html",{root:"./"});
 });
 /// Se inicia el servidor y muestra en la consola que funciona.
 app.listen(PORT, () =>
