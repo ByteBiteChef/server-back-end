@@ -1,11 +1,5 @@
-let response ="";
 
-async function getData() {
-	
+	fetch("http://localhost:4000/users").then((response) => {
+		console.log(response);
+	});
 
-	fetch("http://localhost:4000/users")
-
-		.then(response => response.json())
-		.then(data => console.log(data))
-		.catch(error => console.error("Error:", error));
-}

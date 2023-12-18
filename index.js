@@ -10,6 +10,7 @@ const app = express();
 /// Declara el valor del numero de puerto donde el servidor recive las request
 const PORT = 4000;
 
+
 /// Esta línea dice a la aplicación que utilice el middleware body-parser para analizar las request entrantes en JSON
 app.use(bodyParser.json());
 /// La app usa las rutas definidas en userRoutes
