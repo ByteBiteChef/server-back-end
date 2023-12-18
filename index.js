@@ -5,6 +5,13 @@ import bodyParser from "body-parser";
 /// importa modulo userRouter desde user.js del archivo routes. Contine los routes.
 import usersRoutes from "./routes/users.js";
 
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+
 /// This line is creating an instance of an Express application. The `express()` function is a top-level function exported by the Express module.
 const app = express();
 /// Declara el valor del numero de puerto donde el servidor recive las request
@@ -15,6 +22,7 @@ const PORT = 4000;
 app.use(bodyParser.json());
 /// La app usa las rutas definidas en userRoutes
 app.use("/users", usersRoutes);
+app.use(express.static(__dirname)); 
 /// Define la ruta Get para la ruta ("/"), cuando se accede a la ruta hace el console.log
 app.get("/", (req, res) => {
 	res.sendFile("./index.html",{root:"./"});
@@ -23,3 +31,5 @@ app.get("/", (req, res) => {
 app.listen(PORT, () =>
 	console.log(`Server running on port: http://localhost;${PORT}`)
 );
+
+

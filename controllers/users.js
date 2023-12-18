@@ -14,8 +14,8 @@ let users = [
 ]; /// crea un array vacio
 /// exporta la funcion createUser que recive dos argumentos, req(la solicitud) y res(la respuesta). Crea el user
 export const createUser = (req, res) => {
+	console.log("the req is", req.body)
 	const user = req.body; ///extrae el cuerpo de la solicitud y lo almacena en una constante llamada user.
-
 	users.push({ ...user, id: uuidv4() }); /// Añade un nuevo objeto al array users y le agrega un id con la funcion uuidv4.
 	res.send(`User with the name ${user.firstName} added to the database!`); /// envia una respuesta diciendo que el user fue creado
 };

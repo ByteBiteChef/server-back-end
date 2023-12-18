@@ -30,16 +30,6 @@
 		<!-- Add Bootstrap and jQuery JS -->
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-		<script>///Escribo el codigo desde el HTML porque cuando agrego el .js recivo en la consola el error 404 sobre req.js
-            fetch("http://localhost:4000/users")
-	.then((response) => {
-		return response.json();
-	})
-	.then((data) => {
-		console.log(data);
-	})
-	.then((error) => console.log(error));
-        </script>
+		<script src="/req.js"></script>
 	</body>
 </html>
