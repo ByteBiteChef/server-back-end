@@ -13,7 +13,7 @@ async function handdlePostRequest(event) {
 	const firstName = document.getElementById("firstName").value;
 	const lastName = document.getElementById("lastName").value;
 	const age = document.getElementById("age").value;
-
+	const id = document.getElementById("userId").value;
 	fetch("http://localhost:4000/users", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
@@ -21,6 +21,7 @@ async function handdlePostRequest(event) {
 			firstName,
 			lastName,
 			age,
+			id,
 		}),
 	})
 		.then((response) => response)
@@ -28,17 +29,14 @@ async function handdlePostRequest(event) {
 		.catch((error) => console.log(error));
 }
 
-async function handdleUpDateRequest() {
-	const firstName = document.getElementById("firstName").value;
-	console.log("First Name: ", firstName);
-	const lastName = document.getElementById("lastName").value;
-	console.log("Last Name: ", lastName);
-	const age = document.getElementById("age").value;
-	console.log("Age: ", age);
-	const editId = document.getElementById("userId").value;
-	console.log("User ID: ", editId);
+async function handdleUpDateRequest(event) {
+	event.preventDefault();
 
-	console.log("About to fetch data...");
+	const firstName = document.getElementById("firstName").value;
+	const lastName = document.getElementById("lastName").value;
+	const age = document.getElementById("age").value;
+	const editId = document.getElementById("userId").value;
+
 	fetch(`http://localhost:4000/users/${editId}`, {
 		method: "PATCH",
 		headers: { "Content-Type": "application/json" },
@@ -49,16 +47,40 @@ async function handdleUpDateRequest() {
 		}),
 	})
 		.then((response) => {
-			console.log("Response: ", response);
 			return response;
 		})
 		.then((data) => {
-			console.log("Data: ", data);
 			return console.log(data);
 		})
 		.catch((error) => {
-			console.log("Error: ", error);
 			return console.log(error);
 		});
-	console.log("Fetch completed");
+}
+
+async function deleteRequest(event) {
+	event.preventDefault();
+
+	const firstName = document.getElementById("firstName").value;
+	const lastName = document.getElementById("lastName").value;
+	const age = document.getElementById("age").value;
+	const editId = document.getElementById("userId").value;
+
+	fetch(`http://localhost:4000/users/${editId}`, {
+		method: "DELETE",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({
+			firstName,
+			lastName,
+			age,
+		}),
+	})
+		.then((response) => {
+			return response;
+		})
+		.then((data) => {
+			return console.log(data);
+		})
+		.catch((error) => {
+			return console.log(error);
+		});
 }
