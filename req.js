@@ -1,11 +1,23 @@
-/*fetch("http://localhost:4000/users")
-	.then((response) => {
-		return response.json();
-	})
-	.then((data) => {
-		console.log(data);
-	})
-	.catch((error) => console.log(error));*/
+async function handdleGetRequest(event) {
+	event.preventDefault();
+
+	const myId = document.getElementById("myId").value;
+	console.log(myId);
+
+	fetch(`http://localhost:4000/users/${myId}`)
+		.then((response) => {
+			return response.json();
+		})
+		.then((data) => {
+			console.log(data);
+			let firstName = data.firstName;
+			let lastName = data.lastName;
+
+			document.getElementById("displayUserArea").innerHTML =
+				firstName + lastName;
+		})
+		.catch((error) => console.log(error));
+}
 
 async function handdlePostRequest(event) {
 	event.preventDefault();

@@ -13,28 +13,73 @@
 			<form id="add-user-form">
 				<div class="form-group">
 					<label for="firstName">First Name</label>
-					<input type="text" value="Max" id="firstName" class="form-control" />
+					<input
+						type="text"
+						value="Max"
+						id="firstName"
+						class="form-control"
+					/>
 				</div>
 				<div class="form-group">
 					<label for="lastName">Last Name</label>
-					<input type="text" value="Rob" id="lastName" class="form-control" />
+					<input
+						type="text"
+						value="Rob"
+						id="lastName"
+						class="form-control"
+					/>
 				</div>
 				<div class="form-group">
 					<label for="age">Age</label>
-					<input type="number" value="36" id="age" class="form-control" />
+					<input
+						type="number"
+						value="36"
+						id="age"
+						class="form-control"
+					/>
 				</div>
 				<div class="form-group">
 					<label for="userId">ID</label>
 					<input type="text" id="userId" class="form-control" />
 				</div>
-				<button type="submit" class="btn btn-primary" onclick="handdlePostRequest(event)">Submit</button>
-				<button class="btn btn-warning" onclick="handdleUpDateRequest(event)">Edit</button>
-				<button type="delete" class="btn btn-danger" onclick="deleteRequest(event)">Delete</button>
+				<button
+					type="submit"
+					class="btn btn-primary"
+					onclick="handdlePostRequest(event)"
+				>
+					Submit
+				</button>
+				<button
+					class="btn btn-warning"
+					onclick="handdleUpDateRequest(event)"
+				>
+					Edit
+				</button>
+				<button
+					type="delete"
+					class="btn btn-danger"
+					onclick="deleteRequest(event)"
+				>
+					Delete
+				</button>
 			</form>
-			
 		</div>
-
-		<!-- Add Bootstrap and jQuery JS -->
+		<div class="secondContainer bg-dark p-4 m-4 col-6">
+			<div class="form-group">
+				<label class="text-white" for="userId">ID</label>
+				<input type="text" id="myId" class="form-control" />
+				<button
+					class="btn btn-success m-0"
+					onclick="handdleGetRequest(event)"
+				>
+					Display
+				</button>
+			</div>
+			<div
+				id="displayUserArea"
+				class="border col-12 bg-white h-100"
+			></div>
+		</div>
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 		<script src="/req.js"></script>
