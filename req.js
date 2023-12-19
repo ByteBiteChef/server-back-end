@@ -1,14 +1,11 @@
-document.querySelector("form").addEventListener("submit", handdlePostRequest);
-document.querySelector("form").addEventListener("edit", handdleUpDateRequest);
-
-fetch("http://localhost:4000/users")
+/*fetch("http://localhost:4000/users")
 	.then((response) => {
 		return response.json();
 	})
 	.then((data) => {
 		console.log(data);
 	})
-	.catch((error) => console.log(error));
+	.catch((error) => console.log(error));*/
 
 async function handdlePostRequest(event) {
 	event.preventDefault();
@@ -43,7 +40,7 @@ async function handdleUpDateRequest() {
 
 	console.log("About to fetch data...");
 	fetch(`http://localhost:4000/users/${editId}`, {
-		method: "PUT",
+		method: "PATCH",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({
 			firstName,

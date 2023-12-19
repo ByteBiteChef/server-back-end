@@ -5,11 +5,13 @@ let users = [
 		firstName: "John",
 		lastName: "Doe",
 		age: 25,
+		id: 28,
 	},
 	{
 		firstName: "Nun",
 		lastName: "Ve",
 		age: 35,
+		id: 29,
 	},
 ]; /// crea un array vacio
 /// exporta la funcion createUser que recive dos argumentos, req(la solicitud) y res(la respuesta). Crea el user
