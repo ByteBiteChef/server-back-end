@@ -38,13 +38,30 @@ export const deleteUser = (req, res) => {
 };
 /// Exporta una función llamada updateUser
 export const updateUser = (req, res) => {
-	const { id } = req.params; /// extrae el parametro id y lo guarda en la constante
-	const { firstName, lastName, age } = req.body; /// extrae las propiedades firstName, lastName y age y los guarda en un aconstante
-	const user = users.find((user) => user.id == id); ///busca en el array un usuario con el mismo id al de la solicitud
+	console.log("req from updateUser", req.body)
+	console.log("updateUser function called");
+	const { id } = req.params;
+	console.log("id:", id);
+	const { firstName, lastName, age } = req.body;
+	console.log("firstName:", firstName, "lastName:", lastName, "age:", age);
+	console.log(req.body)
+	const user = users.find((user) => user.id == id);
+	console.log("user:", user);
 
-	if (firstName) user.firstName = firstName; /// si se ingresa firstName en la solicitud se reasigna el valor
-	if (lastName) user.lastName = lastName; /// si se ingresa lastName en la solicitud se reasigna el valor
-	if (age) user.age = age; /// si se ingresa age en la solicitud se reasigna el valor
+	if (firstName) {
+		user.firstName = firstName;
+		console.log("Updated firstName:", user.firstName);
+	}
+	if (lastName) {
+		user.lastName = lastName;
+		console.log("Updated lastName:", user.lastName);
+	}
+	if (age) {
+		user.age = age;
+		console.log("Updated age:", user.age);
+	}
 
-	res.send(`User with the id ${id} has been updated`); /// envia una respuesta diciendo que el usuario se actualizo
+	res.send(`User with the id ${id} has been updated`);
+	console.log(`User with the id ${id} has been updated`);
+	
 };

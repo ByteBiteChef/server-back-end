@@ -31,15 +31,18 @@ async function handdlePostRequest(event) {
 		.catch((error) => console.log(error));
 }
 
-async function handdleUpDateRequest(event) {
-	event.preventDefault();
-
+async function handdleUpDateRequest() {
 	const firstName = document.getElementById("firstName").value;
+	console.log("First Name: ", firstName);
 	const lastName = document.getElementById("lastName").value;
+	console.log("Last Name: ", lastName);
 	const age = document.getElementById("age").value;
-	const id = document.getElementById("userId").value;
+	console.log("Age: ", age);
+	const editId = document.getElementById("userId").value;
+	console.log("User ID: ", editId);
 
-	fetch(`http://localhost:4000/users/${id}`, {
+	console.log("About to fetch data...");
+	fetch(`http://localhost:4000/users/${editId}`, {
 		method: "PUT",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({
@@ -48,7 +51,17 @@ async function handdleUpDateRequest(event) {
 			age,
 		}),
 	})
-		.then((response) => response)
-		.then((data) => console.log(data))
-		.catch((error) => console.log(error));
+		.then((response) => {
+			console.log("Response: ", response);
+			return response;
+		})
+		.then((data) => {
+			console.log("Data: ", data);
+			return console.log(data);
+		})
+		.catch((error) => {
+			console.log("Error: ", error);
+			return console.log(error);
+		});
+	console.log("Fetch completed");
 }
