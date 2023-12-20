@@ -12,9 +12,10 @@ async function handdleGetRequest(event) {
 			console.log(data);
 			let firstName = data.firstName;
 			let lastName = data.lastName;
+			let age = data.age;
 
 			document.getElementById("displayUserArea").innerHTML =
-				firstName + lastName;
+				"Name:" + firstName + " " +"Last Name:" + lastName + " " + "Age:" + age;
 		})
 		.catch((error) => console.log(error));
 }
