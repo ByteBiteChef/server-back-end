@@ -1,4 +1,4 @@
-
+import sqlite3 from "sqlite3";
 
 let users = [
 	{
@@ -16,9 +16,9 @@ let users = [
 ]; /// crea un array vacio
 /// exporta la funcion createUser que recive dos argumentos, req(la solicitud) y res(la respuesta). Crea el user
 export const createUser = (req, res) => {
-	console.log("the req is", req.body)
+	console.log("the req is", req.body);
 	const user = req.body; ///extrae el cuerpo de la solicitud y lo almacena en una constante llamada user.
-	users.push({ ...user}); /// Añade un nuevo objeto al array users y le agrega un id con la funcion uuidv4.
+	users.push({ ...user }); /// Añade un nuevo objeto al array users y le agrega un id con la funcion uuidv4.
 	res.send(`User with the name ${user.firstName} added to the database!`); /// envia una respuesta diciendo que el user fue creado
 };
 /// exporta la funcion getUsers. Esta funcion
@@ -40,13 +40,13 @@ export const deleteUser = (req, res) => {
 };
 /// Exporta una función llamada updateUser
 export const updateUser = (req, res) => {
-	console.log("req from updateUser", req.body)
+	console.log("req from updateUser", req.body);
 	console.log("updateUser function called");
 	const { id } = req.params;
 	console.log("id:", id);
 	const { firstName, lastName, age } = req.body;
 	console.log("firstName:", firstName, "lastName:", lastName, "age:", age);
-	console.log(req.body)
+	console.log(req.body);
 	const user = users.find((user) => user.id == id);
 	console.log("user:", user);
 
@@ -65,5 +65,12 @@ export const updateUser = (req, res) => {
 
 	res.send(`User with the id ${id} has been updated`);
 	console.log(`User with the id ${id} has been updated`);
-	
 };
+
+const { verbose } = sqlite3;
+const db = new (verbose().Database)("./DatabaseName.db", (err) => {
+	if (err) {
+		console.error(err.message);
+	}
+	console.log("Connected to the database.");
+});
