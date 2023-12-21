@@ -15,7 +15,14 @@ async function handdleGetRequest(event) {
 			let age = data.age;
 
 			document.getElementById("displayUserArea").innerHTML =
-				"Name:" + firstName + " " +"Last Name:" + lastName + " " + "Age:" + age;
+				"Name:" +
+				firstName +
+				" " +
+				"Last Name:" +
+				lastName +
+				" " +
+				"Age:" +
+				age;
 		})
 		.catch((error) => console.log(error));
 }
