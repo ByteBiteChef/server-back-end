@@ -1,19 +1,6 @@
 import sqlite3 from "sqlite3";
 
-let users = [
-	{
-		firstName: "John",
-		lastName: "Doe",
-		age: 25,
-		id: 28,
-	},
-	{
-		firstName: "Nun",
-		lastName: "Ve",
-		age: 35,
-		id: 29,
-	},
-]; /// crea un array vacio
+let users;
 /// exporta la funcion createUser que recive dos argumentos, req(la solicitud) y res(la respuesta). Crea el user
 export const createUser = (req, res) => {
 	console.log("the req is", req.body);
@@ -47,7 +34,16 @@ export const getUser = (req, res) => {
 ///exporta la funcion deleteUser
 export const deleteUser = (req, res) => {
 	const { id } = req.params; /// extrae el parametro id y lo guarda en la constante
-	users = users.filter((user) => user.id !== id); /// Filtra el array users y saca el usuario con id sea igual al id extraído de la solicitud. El resultado se almacena de nuevo en la variable users.
+	
+	let del = `DELETE FROM users WHERE id == ${id}`;
+
+	/// Ejecuta el metodo para agregar la row a la table de lo contrario console log error
+	db.run(del, function (error) {
+		if (error) {
+			return console.error(error.message);
+		}
+		console.log(`Id: ${id} has been deleted`);
+	});
 
 	res.send(`User with the id ${id} deleted from the database.`); /// responde que el usuario ha sido eliminado
 };
