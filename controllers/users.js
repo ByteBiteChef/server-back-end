@@ -34,10 +34,10 @@ export const getUser = (req, res) => {
 ///exporta la funcion deleteUser
 export const deleteUser = (req, res) => {
 	const { id } = req.params; /// extrae el parametro id y lo guarda en la constante
-	
+
 	let del = `DELETE FROM users WHERE id == ${id}`;
 
-	/// Ejecuta el metodo para agregar la row a la table de lo contrario console log error
+	/// Ejecuta el metodo con el parametro "del" para borrar usuarios
 	db.run(del, function (error) {
 		if (error) {
 			return console.error(error.message);
@@ -49,31 +49,22 @@ export const deleteUser = (req, res) => {
 };
 /// Exporta una función llamada updateUser
 export const updateUser = (req, res) => {
-	console.log("req from updateUser", req.body);
-	console.log("updateUser function called");
 	const { id } = req.params;
-	console.log("id:", id);
 	const { firstName, lastName, age } = req.body;
-	console.log("firstName:", firstName, "lastName:", lastName, "age:", age);
-	console.log(req.body);
-	const user = users.find((user) => user.id == id);
-	console.log("user:", user);
+	
+	let upDate = `UPDATE users
+SET firstName = ?, lastName = ?, age = ?
+WHERE id == ?`;
 
-	if (firstName) {
-		user.firstName = firstName;
-		console.log("Updated firstName:", user.firstName);
-	}
-	if (lastName) {
-		user.lastName = lastName;
-		console.log("Updated lastName:", user.lastName);
-	}
-	if (age) {
-		user.age = age;
-		console.log("Updated age:", user.age);
-	}
+	db.run(upDate, [firstName, lastName, age, id], function (error) {
+		if (error) {
+			return console.error(error.message);
+		}
+		console.log(`User with the id ${id} has been updated`);
+	});
 
 	res.send(`User with the id ${id} has been updated`);
-	console.log(`User with the id ${id} has been updated`);
+	
 };
 
 const { verbose } = sqlite3;
