@@ -26,11 +26,21 @@ export const getUsers = (req, res) => {
 	res.send(users); /// envia una respuesta con el array de users
 };
 /// exporta la funcion getUser
+
 export const getUser = (req, res) => {
-	const { id } = req.params; /// extrae el parametro id y lo guarda en la constante
-	const foundUser = users.find((user) => user.id == id); /// busca en el array de users un usuario con el mismo id que el de la request y lo almacena
-	res.send(foundUser); /// envia una respuesta con el usuario encontrado
+	const { id } = req.params;
+	let sql = `SELECT * FROM users WHERE id == ${id}`;
+
+	db.get(sql, function (error, row) {
+		if (error) {
+			console.error(error.message);
+		} else {
+			res.send(row);
+			console.log(row);
+		}
+	});
 };
+
 ///exporta la funcion deleteUser
 export const deleteUser = (req, res) => {
 	const { id } = req.params; /// extrae el parametro id y lo guarda en la constante
@@ -51,7 +61,7 @@ export const deleteUser = (req, res) => {
 export const updateUser = (req, res) => {
 	const { id } = req.params;
 	const { firstName, lastName, age } = req.body;
-	
+
 	let upDate = `UPDATE users
 SET firstName = ?, lastName = ?, age = ?
 WHERE id == ?`;
@@ -64,7 +74,6 @@ WHERE id == ?`;
 	});
 
 	res.send(`User with the id ${id} has been updated`);
-	
 };
 
 const { verbose } = sqlite3;
